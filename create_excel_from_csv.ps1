@@ -31,6 +31,9 @@ try {
     }
 } catch {
     $tmp = (Join-Path (Get-Location).Path $path) -Split "/"
+    if ($path.StartsWith("/")) {
+        $tmp = $path -Split "/"
+    }
     $base = $tmp[0..($tmp.Length-2)] -Join "/"
     if(! (Test-Path $base)){
         "Output path base {0} not found" -F $base
